@@ -21,16 +21,19 @@ I realize anyone could potentially benefit from this format.
 
 ### Page Status
 
-| Page                        | Status      |
-|-----------------------------|------------|
-| Introduction                | 🚧          |
-| Educational Background      | ✅          |
-| Personal Projects           | ❌          |
-| - resume-template           | ❌          |
-| - zip-url                   | ❌          |
-| - quick-history-viewer      | ❌          |
-| - Course Registration System | ❌          |
-| Resume                      | ✅         |
+| Page                                | Status |
+| ----------------------------------- | ------ |
+| Introduction                        | 🚧     |
+| Educational Background              | ✅     |
+| Independent Studies                 | ❌     |
+| - CS (Reversible Image Data Hiding) | ❌     |
+| - MIS (Facial Emotion Recognition)  | ❌     |
+| Personal Projects                   | ❌     |
+| - resume-template                   | ❌     |
+| - zip-url                           | ❌     |
+| - quick-history-viewer              | ❌     |
+| - Course Registration System        | ❌     |
+| Resume                              | ✅     |
 
 ## Why Nextra? (Project motivation)
 
@@ -52,7 +55,7 @@ First, [install bun](https://bun.sh/docs/installation)
 
 Then,
 
-``` shell
+```shell
 bun install
 bun run dev
 ```
