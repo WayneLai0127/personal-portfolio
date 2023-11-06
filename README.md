@@ -28,6 +28,9 @@ I realize anyone could potentially benefit from this format.
 | Independent Studies                 | ❌     |
 | - CS (Reversible Image Data Hiding) | ❌     |
 | - MIS (Facial Emotion Recognition)  | ❌     |
+| Work Experience                     | ❌     |
+| - Brilltek                          | ❌     |
+| - Tankong Precision                 | ❌     |
 | Personal Projects                   | ❌     |
 | - resume-template                   | ❌     |
 | - zip-url                           | ❌     |
