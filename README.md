@@ -25,8 +25,6 @@ I realize anyone could potentially benefit from this format.
 |-----------------------------|------------|
 | Introduction                | 🚧          |
 | Educational Background      | ✅          |
-| - CS Degree                 | ❌          |
-| - MIS Degree                | ❌          |
 | Personal Projects           | ❌          |
 | - resume-template           | ❌          |
 | - zip-url                   | ❌          |
