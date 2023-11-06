@@ -23,7 +23,7 @@ I realize anyone could potentially benefit from this format.
 
 | Page                                | Status |
 | ----------------------------------- | ------ |
-| Introduction                        | 🚧     |
+| Introduction                        | ✅     |
 | Educational Background              | ✅     |
 | Independent Studies                 | ❌     |
 | - CS (Reversible Image Data Hiding) | ❌     |
