@@ -24,7 +24,7 @@ I realize anyone could potentially benefit from this format.
 | Page                        | Status      |
 |-----------------------------|------------|
 | Introduction                | 🚧          |
-| Educational Background      | ❌          |
+| Educational Background      | ✅          |
 | - CS Degree                 | ❌          |
 | - MIS Degree                | ❌          |
 | Personal Projects           | ❌          |
