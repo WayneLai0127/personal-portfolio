@@ -18,292 +18,138 @@ CRM 專案目的是替公司有效地管理客戶關係，提供一個全面的�
 
 </div>
 
+<style>
+  {`
+    .skillCategory {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+      gap: 5px;
+    }
+
+    .skill {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .skill img {
+      width: 30px;
+      height: 30px;
+      margin-bottom: 1px;
+    }
+
+    .skill div {
+      margin-top: 5px;
+    }
+  `}
+</style>
+
 ## Skills
 
 ### Language
 
-<div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(125px, 1fr))",
-    gap: "5px",
-  }}
->
+<div className="skillCategory">
   {/* Language */}
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        marginBottom: "1px",
-      }}
-      src="/assets/skill-icon-typescript.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>Typescript</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-typescript.jpg" alt="Image" />
+    <div>Typescript</div>
   </div>
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        verticalAlign: "middle",
-      }}
-      src="/assets/skill-icon-python.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>Python</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-python.jpg" alt="Image" />
+    <div>Python</div>
   </div>
 </div>
 
 ### Backend Framework
 
-<div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(125px, 1fr))",
-    gap: "5px",
-  }}
->
+<div className="skillCategory">
   {/* Backend Framework */}
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        marginBottom: "1px",
-      }}
-      src="/assets/skill-icon-expressjs.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>ExpressJS</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-expressjs.jpg" alt="Image" />
+    <div>ExpressJS</div>
   </div>
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        verticalAlign: "middle",
-      }}
-      src="/assets/skill-icon-nextjs.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>NextJS</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-nextjs.jpg" alt="Image" />
+    <div>NextJS</div>
   </div>
 </div>
 
 ### DB
 
-<div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(125px, 1fr))",
-    gap: "5px",
-  }}
->
+<div className="skillCategory">
   {/* DB */}
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        marginBottom: "1px",
-      }}
-      src="/assets/skill-icon-mysql.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>MySQL</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-mysql.jpg" alt="Image" />
+    <div>MySQL</div>
   </div>
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        verticalAlign: "middle",
-      }}
-      src="/assets/skill-icon-postgresql.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>PostgreSQL</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-postgresql.jpg" alt="Image" />
+    <div>PostgreSQL</div>
   </div>
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        verticalAlign: "middle",
-      }}
-      src="/assets/skill-icon-redis.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>Redis</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-redis.jpg" alt="Image" />
+    <div>Redis</div>
   </div>
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        verticalAlign: "middle",
-      }}
-      src="/assets/skill-icon-elasticsearch.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>Elasticsearch</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-elasticsearch.jpg" alt="Image" />
+    <div>Elasticsearch</div>
   </div>
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        verticalAlign: "middle",
-      }}
-      src="/assets/skill-icon-firestore.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>Firestore</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-firestore.jpg" alt="Image" />
+    <div>Firestore</div>
   </div>
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        verticalAlign: "middle",
-      }}
-      src="/assets/skill-icon-s3.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>S3</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-s3.jpg" alt="Image" />
+    <div>S3</div>
   </div>
 </div>
 
 ### Frontend
 
-<div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(125px, 1fr))",
-    gap: "5px",
-  }}
->
+<div className="skillCategory">
   {/* Frontend */}
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        marginBottom: "1px",
-      }}
-      src="/assets/skill-icon-nextjs.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>NextJS</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-nextjs.jpg" alt="Image" />
+    <div>NextJS</div>
   </div>
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        verticalAlign: "middle",
-      }}
-      src="/assets/skill-icon-react.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>React</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-react.jpg" alt="Image" />
+    <div>React</div>
   </div>
 </div>
 
 ### Development
 
-<div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(125px, 1fr))",
-    gap: "5px",
-  }}
->
+<div className="skillCategory">
   {/* Development */}
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        marginBottom: "1px",
-      }}
-      src="/assets/skill-icon-agiledevelopment.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>Agile</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-agiledevelopment.jpg" alt="Image" />
+    <div>Agile</div>
   </div>
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        verticalAlign: "middle",
-      }}
-      src="/assets/skill-icon-git.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>Git</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-git.jpg" alt="Image" />
+    <div>Git</div>
   </div>
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        verticalAlign: "middle",
-      }}
-      src="/assets/skill-icon-nodejs.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>Node.js</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-nodejs.jpg" alt="Image" />
+    <div>Node.js</div>
   </div>
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        verticalAlign: "middle",
-      }}
-      src="/assets/skill-icon-npm.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>npm</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-npm.jpg" alt="Image" />
+    <div>npm</div>
   </div>
 </div>
 
 ### Cloud
 
-<div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(125px, 1fr))",
-    gap: "5px",
-  }}
->
+<div className="skillCategory">
   {/* Cloud */}
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        marginBottom: "1px",
-      }}
-      src="/assets/skill-icon-gcp.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>GCP</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-gcp.jpg" alt="Image" />
+    <div>GCP</div>
   </div>
-  <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
-    <img
-      style={{
-        width: "30px",
-        height: "30px",
-        verticalAlign: "middle",
-      }}
-      src="/assets/skill-icon-aws.jpg"
-      alt="Image"
-    />
-    <div style={{ marginTop: "5px" }}>AWS</div>
+  <div className="skill">
+    <img src="/assets/skill-icon-aws.jpg" alt="Image" />
+    <div>AWS</div>
   </div>
 </div>
