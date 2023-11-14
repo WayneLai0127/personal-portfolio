@@ -1,6 +1,9 @@
 {
   "index": "Introduction",
   "education": "Educational Background",
+  "events": {
+    "title": "Community Events"
+  },
   "resume": "Resume",
   "about": {
     "title": "About",
