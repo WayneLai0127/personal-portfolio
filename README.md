@@ -25,9 +25,8 @@ I realize anyone could potentially benefit from this format.
 | ----------------------------------- | ------ |
 | Introduction                        | ✅     |
 | Educational Background              | ✅     |
-| Independent Studies                 | ❌     |
-| - CS (Reversible Image Data Hiding) | ❌     |
-| - MIS (Facial Emotion Recognition)  | ❌     |
+| Independent Studies                 | ✅     |
+| - CS (Reversible Image Data Hiding) | ✅     |
 | Work Experience                     | ❌     |
 | - Brilltek                          | ❌     |
 | - Tankong Precision                 | ❌     |

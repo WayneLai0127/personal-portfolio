@@ -1,0 +1,96 @@
+# 兼具建構性與可預測性之雙影像可逆式藏密演算法
+
+## Keywords
+
+`深度學習`、`影像生成`、`可逆藏密學`、`可預測性`、`雙偽裝影像`
+
+## Download
+
+[Download Full Journal(Google drive)](https://zip-url.vercel.app/project-cs)
+
+## 專題報告
+
+### 專題簡介
+
+本專題希望提出一個具備高藏量、高彈性、建構性、與可預測性的雙影像 可逆式藏密演算法
+
+使用了以下技術
+
+- 兩階段藏密、彈性的進制達成高藏密量
+  - 嵌入 7 進制秘密訊息時，嵌入率為每像素 3.48 位元 (bpp)
+- 機器學習影像分群提高彈性
+- 深度學習影像生成演算法來達到建構性\*
+- 數學推導出期望變動量公式進而得到預期藏密量
+
+### 專題貢獻
+
+我們的演算法具備四項優勢
+
+&emsp;一、首創影像生成與可逆式影像藏密的結合
+
+&emsp;二、採用建構式影像提升對抗偽裝偵測的能力
+
+&emsp;三、高度彈性的藏密量，進制為 7 時，可以嵌入 130,400 英文字母
+
+&emsp;四、可預測的變動量
+
+### 研究方法 - 系統流程圖
+
+![system diagram](public/assets/project-cs/system-diagram.png)
+
+### 研究方法 - 第一階段 single-base 藏密法
+
+![algo-1](public/assets/project-cs/algo-1.png)
+
+### 研究方法 - 第二階段雙影像可逆式藏密演算法
+
+![algo-1](public/assets/project-cs/algo-2.png)
+
+### 實驗結果
+
+#### 藏密量
+
+* 我們的演算法相比 4 篇文獻論文: 可提供更高的藏密量
+
+![result-1](public/assets/project-cs/result-1.png)
+
+<br/>
+
+* 我們的演算法在實際藏密前，便可精確預測出藏密量與產出影像之變動量
+
+![result-2](public/assets/project-cs/result-2.png)
+
+#### RS偽裝偵測
+
+* P value表示RS偽裝偵測判定該影像的預測嵌入量
+* p值範圍介於 -1~1 ，若一偽裝影像之
+* p值趨近或小於0，表RS偵測並未認定為偽裝影像
+* p值趨近於1，則表RS偵測判定此影像經過完整藏密
+* 根據下表結果，我們的演算法在各參數組合下皆有能力抵抗RS偽裝偵測
+
+![result-3](public/assets/project-cs/result-3.png)
+
+#### 影像成果
+
+![result-4-1](public/assets/project-cs/result-4-1.png)
+
+<br/>
+<img
+  src="/assets/project-cs/result-4-2.png"
+  alt="Image"
+  style={{ width: "100%" }}
+/>
+
+### 結論
+
+綜合以上報告，我們的演算法
+
+&emsp;一、利用兩階段藏密與可變進制達到相當高的藏密量
+
+&emsp;二、利用可變動的參數組合使演算法具備高彈性
+
+&emsp;三、利用建構性影像等方式躲避偽裝偵測，增加隱密性
+
+&emsp;四、在藏密前可計算出藏密量與影像期望變動量，省下尋找最佳參數的時間成本
+
+
