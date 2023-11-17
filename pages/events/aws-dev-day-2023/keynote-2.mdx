@@ -1,0 +1,39 @@
+# Opening Keynote #2: 用生成式 AI 翻轉數位體驗：影片搜尋和內容審查
+
+## Outline
+
+透過多模態AI模型，同時利用影像與文字作為輸入，深入探索深度學習各種可能性
+
+## Keywords
+
+`Multimodal AI`, `Generative AI`, `Content Moderation`, `Video Searching`, `LLM`
+
+## Foreword - The Power of Multimodal Models
+
+多模態模型是指能夠處理和理解多種不同類型數據的機器學習模型。這種模型可以處理文字、圖像、語音和其他不同模態的數據，並在這些數據之間建立聯繫，從而更全面地理解信息。
+
+以自然語言處理（NLP）為例，多模態模型可以同時處理文本和圖像數據，從而更好地理解語境。這樣的模型有助於更豐富、更全面地理解人類語言的含義，因為語言往往不僅僅侷限於文字，還包括了視覺信息。
+
+在深度學習領域，有一些著名的多模態模型，例如OpenAI的CLIP（Contrastive Language-Image Pretraining）和Google的BigGAN（Big Generative Adversarial Network）。這些模型通常是基於大規模數據集進行預訓練，然後可以用於各種應用，如圖像檢索、語言生成等。
+
+總的來說，多模態模型的目標是利用多種類型的數據，提高模型對真實世界複雜信息的理解和處理能力。
+
+## Thoughts
+
+在本次演講中，講者深入探討多模態模型的發展和應用，這已在前言中得以詳細說明。
+
+![multimodal-model](public/assets/aws-dev-day-2023/multimodal-model.png)
+
+以內容審查為例（參見下圖），我們可以透過一組提問字串（prompt）和一張影像同時作為輸入，讓模型回答問題，從而實現內容審查，有效過濾有疑慮的內容。
+
+![visual-language-model](public/assets/aws-dev-day-2023/visual-language-model.png)
+
+而如何從基礎的視覺語言模型（上圖）演進至實際應用的內容審查，包括調整問題清單（Question list）和建立內容審查流程的流動性，可參考下圖：
+
+![content-moderation](public/assets/aws-dev-day-2023/content-moderation.png)
+
+在思考的層面，我們可以總結講者對多模態模型的思考，特別是在應用於內容審查方面的挑戰和解決方案。此外，值得深入探討的是模型的不斷調整和優化，以應對現實世界中多樣且不斷變化的數據。
+
+## TL;DR
+
+TL;DR: 透過多模態模型 AI 的協助，搭配不斷成熟的 LLM 模型，我們能夠輕鬆訓練出具有高精確度的影像搜索和高度彈性的內容審查模型，從而改善數位體驗。
