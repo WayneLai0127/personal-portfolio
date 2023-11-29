@@ -48,6 +48,58 @@ I conceptualized, designed, and implemented Port Pulse from the ground up. This 
 
 ## Challenges and Solutions
 
+### Challenge: Toggle not reflecting real state of boolean
+
+Whenever the toggle is being clicked, the value of `monitor.showPortNumber` changes,
+but whenever the window is being re-opened, the toggle always **shows the same value as it initially was, not the current value of the variable**.
+
+<br/>
+<video width="3024" height="1964" controls>
+  <source src="/assets/projects/port-pulse/challenge-toggle.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  }}
+>
+*caption: werid toggle behavior*
+</div>
+<br/>
+
+
+```swift {12}
+@main
+struct port_pulseApp: App {
+    // Create a state object for PortMonitor
+    @StateObject private var monitor = PortMonitor()
+    var body: some Scene {
+        // content view...
+        MenuBarExtra() {
+            VStack {
+                Form {
+                    // other parts of window...
+                    Section {
+                        Toggle("", isOn: $monitor.showPortNumber)
+                    //...
+```
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  }}
+>
+*caption: source code of problematic toggle*
+</div>
+
+#### Solution: Still working on it... 😥
+
 ### Challenge: Icon not changing according to variable
 
 In the project description, one would notice that I planned on showing the port status real-time on the Mac menu bar.
