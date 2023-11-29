@@ -1,0 +1,108 @@
+---
+title: Port Pulse
+---
+
+# Port Pulse
+
+## Overview
+
+Port Pulse is a macOS menu bar app built with SwiftUI that monitors the status of a specified network port. 
+
+This project gave me a chance to practice Swift and XCode developing.
+
+### Project Highlights
+
+- **Real-time Monitoring:** Constantly checks the status of the specified port.
+- **User Interaction:** Easily check and manage the port status through the macOS menu bar or the application window.
+- **Customizable:** Adjust the target port and monitoring interval to suit your needs.
+
+## Project Details
+
+### Technologies Used
+
+- SwiftUI
+- Network Framework
+- Swift programming language
+
+### GitHub Repository
+
+[Port Pulse GitHub Repository](https://github.com/WayneLai0127/port-pulse)
+
+### Screenshots
+
+![Menu Bar](public/assets/projects/port-pulse/demo-menu-bar.png)
+*Caption: Port Pulse in the macOS menu bar. (version 0)*
+
+![Application Window](public/assets/projects/port-pulse/demo-menu-window.png)
+*Caption: Port Pulse application window. (version 0)*
+
+## My Role
+
+I conceptualized, designed, and implemented Port Pulse from the ground up. This project allowed me to deepen my understanding of Swift development, networking in macOS applications, and creating an intuitive user interface.
+
+## Learning Points
+
+- **SwiftUI:** Explored and applied SwiftUI for building the user interface.
+- **Network Framework:** Learned how to use the Network framework for monitoring port status.
+- **User Interaction:** Implemented features for user-friendly interaction in both the menu bar and application window.
+
+## Challenges and Solutions
+
+### Challenge: Icon not changing according to variable
+
+In the project description, one would notice that I planned on showing the port status real-time on the Mac menu bar.
+Naturally, my code would look something like this:
+
+```swift {6-7}
+MenuBarExtra() {
+  // menu bar on click window
+} label: {
+    let colors: [String: NSColor] = ["UNKNOWN":.red, "IDLE":.gray, "RUNNING":.green]
+    let configuration = NSImage.SymbolConfiguration(pointSize: 12, weight: .light)
+        //! notice I called monitor.portStatusCode directly
+        .applying(.init(paletteColors: [monitor.portStatusCode]))
+    let image = NSImage(systemSymbolName: "circle.fill", accessibilityDescription: nil)
+    let updateImage = image?.withSymbolConfiguration(configuration)
+    Image(nsImage: updateImage!)
+    if monitor.showPortNumber {
+        Text("\(String(monitor.portNum))").font(.system(size: 3))
+    }
+}
+```
+
+but with this approach, **the icon color wouldn't change accordingly even if variable `monitor.portStatusCode` value has updated**
+
+#### Solution: Object Property Re-assigning
+
+TBH, I'm still having a hard time wrapping my head around why this solution would work, for now, I'm categorizing this as the
+subtlety of Swift, perhaps someday I'll see why.
+
+```swift {5-9}
+MenuBarExtra() {
+  // menu bar on click window
+} label: {
+    let colors: [String: NSColor] = ["UNKNOWN":.red, "IDLE":.gray, "RUNNING":.green]
+    // by re-assigning object property to a variable in scope, the icon became dynamic
+    let colorCode = monitor.portStatusCode
+    let iconColor = colors[colorCode] ?? .red
+    let configuration = NSImage.SymbolConfiguration(pointSize: 12, weight: .light)
+        .applying(.init(paletteColors: [iconColor]))ription: nil)
+    let updateImage = image?.withSymbolConfiguration(configuration)
+    Image(nsImage: updateImage!)
+    if monitor.showPortNumber {
+        Text("\(String(monitor.portNum))").font(.system(size: 3))
+    }
+}
+```
+
+### Challenge: Handling Network Connections
+
+Implementing real-time monitoring required a deep dive into handling network connections. Swift's Network framework provided a solid foundation, but handling various states required careful consideration.
+
+#### Solution: Stateful Design
+
+I implemented a stateful design that allowed seamless updates to the UI based on the connection state. This approach enhanced user experience and provided clear feedback on the port status.
+
+## Roadmap / Future Enhancements
+
+All planning related details & bugs already found is being documented by [this notion page](https://zip-url.vercel.app/port-pulse-roadmap)
