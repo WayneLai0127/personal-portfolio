@@ -6,7 +6,7 @@ title: Port Pulse
 
 ## Overview
 
-Port Pulse is a macOS menu bar app built with SwiftUI that monitors the status of a specified network port. 
+Port Pulse is a macOS menu bar app built with SwiftUI that monitors the status of a specified network port.
 
 This project gave me a chance to practice Swift and XCode developing.
 
@@ -31,10 +31,10 @@ This project gave me a chance to practice Swift and XCode developing.
 ### Screenshots
 
 ![Menu Bar](public/assets/projects/port-pulse/demo-menu-bar.png)
-*Caption: Port Pulse in the macOS menu bar. (version 0)*
+_Caption: Port Pulse in the macOS menu bar. (version 0)_
 
 ![Application Window](public/assets/projects/port-pulse/demo-menu-window.png)
-*Caption: Port Pulse application window. (version 0)*
+_Caption: Port Pulse application window. (version 0)_
 
 ## My Role
 
@@ -53,9 +53,12 @@ I conceptualized, designed, and implemented Port Pulse from the ground up. This 
 Whenever the toggle is being clicked, the value of `monitor.showPortNumber` changes,
 but whenever the window is being re-opened, the toggle always **shows the same value as it initially was, not the current value of the variable**.
 
-<br/>
+<br />
 <video width="3024" height="1964" controls>
-  <source src="/assets/projects/port-pulse/challenge-toggle.mp4" type="video/mp4" />
+  <source
+    src="/assets/projects/port-pulse/challenge-toggle.mp4"
+    type="video/mp4"
+  />
   Your browser does not support the video tag.
 </video>
 <div
@@ -66,10 +69,9 @@ but whenever the window is being re-opened, the toggle always **shows the same v
     justifyContent: "center",
   }}
 >
-*caption: werid toggle behavior*
+  _caption: werid toggle behavior_
 </div>
-<br/>
-
+<br />
 
 ```swift {12}
 @main
@@ -95,7 +97,7 @@ struct port_pulseApp: App {
     justifyContent: "center",
   }}
 >
-*caption: source code of problematic toggle*
+  _caption: source code of problematic toggle_
 </div>
 
 #### Solution: Still working on it... 😥
