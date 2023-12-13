@@ -1,0 +1,271 @@
+# Unit Testing Demystified: Best Practices with Mocha, Sinon, and Proxyquire
+
+## Keywords
+
+`unit test`, `stub`, `mock`, `spy`, `sinon`, `proxyquire`, `chai`, `expect`, `mocha`, `jest`, `js`, `ts`
+
+## Table of Contents
+
+- [Preface](#preface)
+- [Hierarchy of Tests](#hierarchy-of-tests)
+  * [Acceptance Tests](#acceptance-tests)
+  * [Integration Tests](#integration-tests)
+  * [Unit Tests](#unit-tests)
+- [Types of Test Doubles](#types-of-test-doubles)
+  - [Introduction](#introduction)
+  - [1. Stub](#1-stub)
+  - [2. Spy](#2-spy)
+  - [3. Mock](#3-mock)
+  - [TL;DR](#tldr)
+- [Proxyquire](#proxyquire)
+  - [Purpose](#purpose)
+  - [Usage](#usage)
+- [Conclusion](#conclusion)
+- [Reference](#reference)
+
+## Preface
+
+> This is a summary of my learning about unit testing in TypeScript. I will be using `Mocha`, `Sinon` and `Proxyquire` to demonstrate how to use them.
+
+Recently, I've started a new job as a backend developer 🎉.
+
+For an onboarding project, I was asked to write unit tests for a mall-like project that I had developed. And started to notice that I didn't know how to write proper unit tests.
+
+I had written tests before using [jest](https://jestjs.io/), but they were mostly **integration tests**.
+
+After discussing with several colleagues, I came to realize that I didn't know the difference between stub, mock, and spy, nor did some of my colleagues.
+
+So I decided to learn about them and write a summary of my learning.
+
+Hope this helps you as well!
+
+## Hierarchy of Tests
+
+![Hierarchy of Tests](public/assets/tech-notes/unit-tests/test-hierarchy.png)
+H*ierarchy of tests (image source: https://katalon.com/resources-center/blog/unit-testing)*
+
+---
+
+### Acceptance Tests
+
+> Acceptance tests are the highest level of tests. They are also called **end-to-end tests** or **functional tests**. Usually done by QA team.
+>
+> This type of tests are used to test the whole system, and they are usually written in a way that mimics the user's behavior.
+
+For instance, if you want to test a login feature, you would write a test that goes to the login page, enter the username and password, and click the login button.
+
+Acceptance tests are more easier to tell apart from other tests, so I won't be going into details in this article.
+
+---
+
+### Integration Tests
+
+> Integration tests are the second highest level of tests. They are also called **component tests**.
+>
+>This type of tests are used to test the interaction between different components of the system, and most importantly,
+>**system are tested as a whole, not in isolation**.
+
+For instance, if you want to test a login feature, you would write a test that calls the login function, and check if the user is logged in.
+
+From past experience, in a backend project, integration tests are usually written in a way that makes calls to the API endpoints (in other words, a **request**) and checks if the response is correct.
+We could use tools like
+[supertest](https://www.npmjs.com/package/supertest) for Jest, or in Mocha, use [chai-http](https://www.chaijs.com/plugins/chai-http/) to accomplish HTTP request sending.
+
+<br/>
+<p style={{ fontSize: "22px"}}>**Pros**</p>
+- Tests the system as a whole, so it's easier to tell if the system is working or not.
+- Easier to write than unit tests. (No need to mock out dependencies)
+- Straightforward to write (at least for backend engineers).
+- For small projects, it's easier to write integration tests than unit tests because most logic are dealt with in `/routes`.
+
+<br/>
+<p style={{ fontSize: "22px"}}>**Cons**</p>
+- Hard to debug (couldn't tell which component is cauing the error).
+- **Very** Slow to run (Have to spin up most parts of the system (db, object bucket, api endpoint...)).
+- Mocking DB data is hard & tedious.
+
+---
+
+### Unit Tests
+
+> Unit tests are the lowest level of tests. They are also called **isolated tests**.
+>
+> This type of tests are used to test the smallest unit of the system, usually a **function or a class**.
+
+For instance, using the same example, 
+if you want to test a login feature, you would write multiple tests that the `/login` endpoint would call, 
+and test each in different scenarios.
+
+From past experience, in a backend project, unit tests are usually written in a way that directly calls the function (in other words, a **function call**) and checks if the response is correct.
+
+For my case, idealy, I would test at least one success and one failed scenarios for all the functions in `/models` and `/utils` in isolation.
+
+We could use tools like `Sinon` to mock out dependencies, and [Proxyquire](#proxyquire) to mock out modules imported by target file.
+
+<br/>
+<p style={{ fontSize: "22px"}}>**Pros**</p>
+  * Tests the smallest unit of the system, so it's a no-brainer to tell if the function is working or not.
+  * Easy to debug (if you write good tests).
+  * Fast to run (no need to spin up the system) (way faster!).
+
+<br/>
+<p style={{ fontSize: "22px"}}>**Cons**</p>
+  * Hard to write (have to mock out dependencies).
+  * If Mocked out dependencies are not correct, the test would pass even if the function is not working properly.
+  * Misses the big picture.
+
+<br/>
+<br/>
+
+## Types of Test Doubles
+
+![Test Doubles](public/assets/tech-notes/unit-tests/test-double.png)
+*Test Doubles (image source: https://blog.pragmatists.com/test-doubles-fakes-mocks-and-stubs-1a7491dfa3da)*
+
+### Introduction
+
+> Test doubles are objects that are used in unit tests to replace the real objects that the unit being tested depends on.
+
+Normally in unit tests, we would want to test a function in isolation, but most functions require other functions to work properly, for example a function: `getProductName(id: number)`
+ might require db instance for data fetching, 
+ 
+>although for systems at larger scale, DI (dependency injection) might be a must for these functions (`getProductName(db: DB, id: Number)`), 
+>
+>but in the real world, for applications that possess only one or two databases, we often overlook Dependency Injection and import it straight from the top.
+
+I'll briefly explain the differences between stub, spy, and mock, and how to use them in unit tests, for those looking for a more detailed explanation, please refer to [Refernces](#reference).
+
+<br/>
+> For those interested in DI, I personally really recommend [this video](https://www.youtube.com/watch?v=J1f5b4vcxCQ) which thoroughly explains DI and how to implement it in action.
+
+<br/>
+
+### 1. Stub
+
+Stubs are objects that provide canned answers to calls made during the test, usually not responding at all to anything outside what's programmed in for the test.
+
+### 2. Spy
+
+Spies are objects that record how a function is called, allowing us to verify that the function was called correctly.
+
+**Note that spies allow actual function calls to occur; they act as observers to record events during the function call span.**
+
+### 3. Mock
+
+Mocks are objects that pre-programmed with expectations which form a specification of the calls they are expected to receive.
+
+### TL;DR
+
+My personal understanding of the differences between stub, spy, and mock is that:
+
+- **Stub** is used to **replace** a function with a **canned answer**.
+- **Spy** is used to **record** how a function is called.
+- **Mock** is not just a substitute for a function; mocks come pre-programmed with **expectations**, specifying the calls they anticipate receiving. Mocks are primarily used to verify that a function is **invoked correctly**, providing a stricter form of validation.
+
+Moreover, Mocking is a subset of Stubbing, and Stubbing is a subset of Spying.
+
+| Test Double | Purpose | Example |
+| ----------- | ------- | ------- |
+| Stub | Provide canned answers to calls made during the test | `stubProductService.getProductName(id: number).returns('Test Product')` |
+| Spy | Record how a function is called | `spyOn(productService, 'getProductName')` |
+| Mock | Pre-programmed with expectations which form a specification of the calls they are expected to receive | `mockProductService.expects('getProductName').once().withArgs(1)` |
+
+## Proxyquire
+
+[npm link](https://www.npmjs.com/package/proxyquire)
+
+### Purpose
+
+[Proxyquire](https://www.npmjs.com/package/proxyquire) is a library that allows you to **stub out dependencies in your tests**. It is useful when you want to test a module in isolation, but it requires other modules to function.
+
+For my case, I wanted to test a module that required a database connection (specifically, a [Knex](https://knexjs.org/) connection), but I didn't want to actually connect to the database in my tests.
+
+And simply using [Sinon](https://sinonjs.org/) stubs wouldn't work because *knex* calls often require a lot of chaining function calls for example: `db('table_name').select([]).where('...').orderBy('...')`
+
+### Usage
+
+```ts copy filename="tutorial.ts"
+import proxyquire from "proxyquire";
+proxyquire("relative_path_to_your_module", {
+  "exact_same_path_as_your_import": { same_name_as_you_imported, "stub_object_you_created"},
+});
+```
+
+for instance, I wanted to test my model in my `expressJS` project called `order` under folder `/src/models/order.ts` that required `knex` connection from `/src/db/mysql.ts`,
+and my test file is stored under `/__test__/models/order.ts`.
+
+The function I wanted to test in this example is called `attachOrderItem(order: Order)` that takes an `order` as a parameter and attaches `order_items` stored in the database to the order itself.
+
+The original function looks like this:
+
+```ts copy filename="models/order.ts"
+import {
+  Order,
+  PostOrderItemRequestBody,
+  PaymentMethod,
+  OrderStatus,
+} from "../../api";
+import { db } from "../db/mysql";
+
+export const attachOrderItem = async (order: Order) => {
+  try {
+    const items = await db("order_item")
+      .select([])
+      .where({ orderId: order.id });
+    order.items = items;
+  } catch (err) {
+    throw err;
+  }
+};
+```
+
+And the test file looks like this:
+
+```ts copy filename="__test__/models/order.ts" {12-16}
+import proxyquire from "proxyquire";
+import sinon from "sinon";
+import { expect } from "chai";
+const expectedResult: any[] = [
+  {
+    id: 1,
+    name: "test",
+    price: 100,
+    quantity: 1,
+  },
+];
+const knexQuery = createKnexQueryStub(expectedResult);
+const knexStub = sinon.stub().returns(knexQuery);
+const orderModel = proxyquire("../../src/models/order", {
+  "../db/mysql": { db: knexStub },
+});
+
+describe("/models/order", () => {
+  describe("attachOrderItem()", async () => {
+    it("Success", async () => {
+      const order = {
+        id: 1,
+        items: [],
+      };
+      await orderModel.attachOrderItem(order);
+      expect(order.items).to.deep.equal(expectedResult);
+    });
+  });
+});
+```
+
+## Conclusion
+
+In this article, I've briefly explained the differences between [integration tests](#integration-tests) and [unit tests](#unit-tests), and the differences between [stub](#1-stub), [spy](#2-spy), and [mock](#3-mock).
+
+We also go through some simple usage example and purpose for library [Proxyquire](#proxyquire) that allows you to stub out dependencies in your tests.
+
+Hope this article gives you a better understanding of unit tests and how to write them, and try to use Proxyquire when Sinon couldn't do the job.
+
+If not, at least learn how to distinguish them 🤣.
+
+## Reference
+
+- [Best Practices for Spies, Stubs and Mocks in Sinon.js](https://semaphoreci.com/community/tutorials/best-practices-for-spies-stubs-and-mocks-in-sinon-js)
+- [Unit Test 中的替身: 搞不清楚的Dummy、Stub、Spy、Mock、Fake](https://medium.com/starbugs/unit-test-%E4%B8%AD%E7%9A%84%E6%9B%BF%E8%BA%AB-%E6%90%9E%E4%B8%8D%E6%B8%85%E6%A5%9A%E7%9A%84dummy-stub-spy-mock-fake-94be192d5c46)
+- [Node.js 使用 Sinon 進行測試](https://mybaseball52.medium.com/nodejs-test-with-sinon-1-33818b767cbc)
+- [Test Doubles — Fakes, Mocks and Stubs](https://blog.pragmatists.com/test-doubles-fakes-mocks-and-stubs-1a7491dfa3da)
