@@ -187,7 +187,8 @@ And simply using [Sinon](https://sinonjs.org/) stubs wouldn't work because *knex
 ```ts copy filename="tutorial.ts"
 import proxyquire from "proxyquire";
 proxyquire("relative_path_to_your_module", {
-  "exact_same_path_as_your_import": { same_name_as_you_imported, "stub_object_you_created"},
+  // path_to_external_module must be same to the path you imported in your module
+  "path_to_external_module": { module_name: stub_object_you_created},
 });
 ```
 
@@ -221,7 +222,7 @@ export const attachOrderItem = async (order: Order) => {
 
 And the test file looks like this:
 
-```ts copy filename="__test__/models/order.ts" {12-16, 25} showLineNumbers
+```ts copy filename="__test__/models/order.ts" {12-18, 27} showLineNumbers
 import proxyquire from "proxyquire";
 import sinon from "sinon";
 import { expect } from "chai";
@@ -237,6 +238,8 @@ const knexQuery = createKnexQueryStub(expectedResult);
 const knexStub = sinon.stub().returns(knexQuery);
 const orderModel = proxyquire("../../src/models/order", {
   "../db/mysql": { db: knexStub },
+  // other dependencies that requires stubbing
+  "../other/dependency": { dependencyModule: sinonStubObject },
 });
 
 describe("/models/order", () => {
