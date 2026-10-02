@@ -1,0 +1,8 @@
+import type { MetaRecord } from 'nextra'
+
+const meta: MetaRecord = {
+  'keynote-1': 'Keynote #1 在 AWS 上改善開發者體驗，深入探討產業最佳實踐',
+  'keynote-2': 'Keynote #2 用生成式 AI 翻轉數位體驗：影片搜尋和內容審查'
+}
+
+export default meta
